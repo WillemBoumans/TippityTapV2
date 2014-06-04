@@ -49,6 +49,7 @@ public class Game extends Activity {
         String song_name = meta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
         song_name_view.setText(song_name);
 
+
     }
 
     @Override
