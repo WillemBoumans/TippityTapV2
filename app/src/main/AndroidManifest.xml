@@ -21,7 +21,8 @@
         <activity
             android:name=".Game"
             android:label="@string/title_activity_game"
-            android:parentActivityName=".MainMenu" >
+            android:parentActivityName=".MainMenu"
+            android:screenOrientation="nosensor">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainMenu" />

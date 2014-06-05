@@ -36,4 +36,30 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap!"
+        android:textSize="50dp"
+        android:id="@+id/Tap"
+        android:onClick="Tap"
+        android:enabled="false"
+        android:height="128dp"
+        android:width="128dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="114dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Sample text"
+        android:textSize="50sp"
+        android:id="@+id/GameScoreTextView"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/Tap"
+        android:layout_alignBottom="@+id/Tap"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
