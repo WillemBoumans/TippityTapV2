@@ -39,4 +39,12 @@ public class MainMenu extends Activity {
             startActivity(toGame);
         }
     }
+
+    public void HighScores(View view) {
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
+    }
+
+    public void makeTipMap(View view) {
+    }
 }

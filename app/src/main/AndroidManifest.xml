@@ -2,19 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tippitytapv2.app"
     android:versionCode="1"
-    android:versionName="1.1">
-
-    <uses-sdk
-        android:minSdkVersion="16"
-        ></uses-sdk>
+    android:versionName="1.1" >
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:permission="RECORD_AUDIO">
-
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainMenu"
             android:label="@string/app_name" >
@@ -27,6 +21,14 @@
         <activity
             android:name=".Game"
             android:label="@string/title_activity_game"
+            android:parentActivityName=".MainMenu" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainMenu" />
+        </activity>
+        <activity
+            android:name=".HighScores"
+            android:label="@string/title_activity_high_scores"
             android:parentActivityName=".MainMenu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

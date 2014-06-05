@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
-import be.hogent.tarsos.dsp.MicrophoneAudioDispatcher;
 
 
 public class Game extends Activity {
@@ -52,10 +51,6 @@ public class Game extends Activity {
         meta.setDataSource(getApplicationContext(),Song);
         String song_name = meta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
         song_name_view.setText(song_name);
-        MicrophoneAudioDispatcher MAD = new MicrophoneAudioDispatcher(44100, 1024, 512);
-        System.out.println("oy vey!");
-
-
     }
 
     @Override
