@@ -57,6 +57,18 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Sample text"
+        android:textSize="25sp"
+        android:id="@+id/result_text"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/Tap"
+        android:layout_alignBottom="@+id/Tap"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Sample text"
         android:textSize="50sp"
         android:id="@+id/GameScoreTextView"
         android:visibility="invisible"

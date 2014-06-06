@@ -182,7 +182,7 @@ public class Game extends Activity
             }
             Button Tap = (Button)findViewById(R.id.Tap);
             Tap.setVisibility(View.INVISIBLE);
-            TextView score_text = (TextView)findViewById(R.id.GameScoreTextView);
+            TextView score_text = (TextView)findViewById(R.id.result_text);
             score_text.setText(score + " out of " + max_score);
             score_text.setVisibility(View.VISIBLE);
             add_highscore();
