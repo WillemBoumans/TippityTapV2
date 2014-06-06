@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.MediaMetadataRetriever;
@@ -38,6 +39,7 @@ public class Game extends Activity
     private LinkedList<Long> player_taps;
     private int score = 0;
     private int max_score;
+    private Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,12 +136,9 @@ public class Game extends Activity
     public void onDialogPositiveClick(DialogFragment dialog) {
         //Game is started
         Button button = (Button)findViewById(R.id.Tap);
-        m.start();
         button.setEnabled(true);
+        m.start();
         start = System.currentTimeMillis();
-
-
-
     }
 
     public void Tap(View view) {
@@ -166,8 +165,13 @@ public class Game extends Activity
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            TextView result_text = (TextView)findViewById(R.id.GameScoreTextView);
+            result_text.setTextSize(48);
+            result_text.setText("The TipMap has been made and saved. The next time this song is chosen, you will get a score for it.");
+            result_text.setVisibility(View.VISIBLE);
         }
         else{
+
             for(long l : player_taps){
                 if(tipMap.contains_tip(l)){
                     score+= 2;
@@ -181,7 +185,52 @@ public class Game extends Activity
             TextView score_text = (TextView)findViewById(R.id.GameScoreTextView);
             score_text.setText(score + " out of " + max_score);
             score_text.setVisibility(View.VISIBLE);
+            add_highscore();
         }
 
     }
+
+    private void add_highscore(){
+        //Open file
+        HighScoresContainer HSC = null;
+        try {
+            FileInputStream fis = getApplicationContext().openFileInput(HighScores.HIGH_SCORES_FILENAME);
+            ObjectInputStream is = new ObjectInputStream(fis);
+            HSC = (HighScoresContainer) is.readObject();
+            is.close();
+            fis.close();
+        } catch (FileNotFoundException e) {
+            HSC = new HighScoresContainer();
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        HighScore HS = new HighScore(tipMap.getSong_name(), score, max_score);
+        boolean is_high_score = true;
+        for(HighScore highScore : HSC.HighScores){
+            if(highScore.getScore() > score && highScore.getSong_name().contentEquals(tipMap.getSong_name())){
+                is_high_score = false;
+            }
+        }
+        if(is_high_score){
+            HSC.HighScores.add(HS);
+        }
+        //Close file
+        try {
+            FileOutputStream fos = getApplicationContext().openFileOutput(HighScores.HIGH_SCORES_FILENAME, Context.MODE_PRIVATE);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(HSC);
+            os.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
