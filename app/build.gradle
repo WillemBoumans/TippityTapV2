@@ -2,14 +2,14 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
-
+    buildToolsVersion '19.1.0'
     defaultConfig {
         packageName "com.tippitytapv2.app"
         minSdkVersion 16
         targetSdkVersion 16
         versionCode 1
-        versionName "1.1"
+        versionName '1.1'
+        applicationId 'com.tippitytapv2.app'
     }
     buildTypes {
         release {
@@ -17,9 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
 }

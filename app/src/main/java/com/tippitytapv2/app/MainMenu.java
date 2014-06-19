@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.provider.MediaStore;
-
 import android.view.View;
 
 
@@ -31,7 +29,7 @@ public class MainMenu extends Activity {
     }
 
     public void onActivityResult(int RequestCode, int resultCode, Intent intent){
-        if(RequestCode == REQUEST_SONG){
+        if(RequestCode == REQUEST_SONG && intent != null){
             Intent toGame = new Intent(this, Game.class);
             Uri song = intent.getData();
             assert song != null;

@@ -4,16 +4,14 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.AudioRecord;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,13 +23,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
-import java.util.Date;
 import java.util.LinkedList;
 
 
 public class Game extends Activity
         implements NewTipMapDialogFragment.NewTipMapDialogListener, TipMapDialogFragment.TipMapDialogListener,
-        MediaPlayer.OnCompletionListener{
+        MediaPlayer.OnCompletionListener, Button.OnTouchListener{
 
     private MediaPlayer m;
     private TipMap tipMap;
@@ -139,15 +136,7 @@ public class Game extends Activity
         button.setEnabled(true);
         m.start();
         start = System.currentTimeMillis();
-    }
-
-    public void Tap(View view) {
-        if (tipMap.isBeing_created()) {
-            tipMap.addTip(System.currentTimeMillis() - start);
-        }
-        else {
-            player_taps.add(System.currentTimeMillis() - start);
-        }
+        button.setOnTouchListener(this);
     }
 
     @Override
@@ -165,8 +154,10 @@ public class Game extends Activity
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Button button = (Button)findViewById(R.id.Tap);
+            button.setVisibility(Button.INVISIBLE);
             TextView result_text = (TextView)findViewById(R.id.GameScoreTextView);
-            result_text.setTextSize(48);
+            result_text.setTextSize(24);
             result_text.setText("The TipMap has been made and saved. The next time this song is chosen, you will get a score for it.");
             result_text.setVisibility(View.VISIBLE);
         }
@@ -233,4 +224,14 @@ public class Game extends Activity
     }
 
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (tipMap.isBeing_created()) {
+            tipMap.addTip(System.currentTimeMillis() - start);
+        }
+        else {
+            player_taps.add(System.currentTimeMillis() - start);
+        }
+        return false;
+    }
 }

@@ -1,10 +1,6 @@
 package com.tippitytapv2.app;
 
 import android.app.Activity;
-import android.app.ListActivity;
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
