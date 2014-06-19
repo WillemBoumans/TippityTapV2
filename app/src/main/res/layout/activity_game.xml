@@ -9,6 +9,7 @@
     tools:context="com.example.tippitytap.app.Game"
     android:background="@drawable/back">
     <com.tippitytapv2.app.Indicator
+        android:id="@+id/Indicator"
         android:layout_width="256dp"
         android:layout_height="256dp"
         android:layout_centerInParent="true"/>

@@ -132,10 +132,19 @@ public class Game extends Activity
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         //Game is started
+        Indicator indicator = (Indicator)findViewById(R.id.Indicator);
         Button button = (Button)findViewById(R.id.Tap);
         button.setEnabled(true);
         m.start();
         start = System.currentTimeMillis();
+        if(tipMap.isBeing_created()){
+            indicator.setVisibility(View.INVISIBLE);
+        }
+        else{
+            indicator.setTipMap(tipMap);
+            indicator.start(start);
+        }
+
         button.setOnTouchListener(this);
     }
 

@@ -19,9 +19,15 @@ public class TipMap implements Serializable{
 
     }
 
+    public TipMap (TipMap tipMap){
+        this.song_name = tipMap.getSong_name();
+        this.taps = tipMap.getTaps();
+
+    }
+
     public boolean contains_tip(long tip){
         for(long tap : taps){
-            if( tap > tip - 50 && tap < tip + 50 ){
+            if( tap > tip - 200 && tap < tip + 200 ){
                 return true;
             }
 
