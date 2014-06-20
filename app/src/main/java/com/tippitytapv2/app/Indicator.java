@@ -68,7 +68,7 @@ public class Indicator extends SurfaceView
                 thread.setRunning(false);
             }
             else {
-                if (tipMap.contains_tip(System.currentTimeMillis() - start - 150)) {
+                if (tipMap.contains_tip(System.currentTimeMillis() - start + 100)) {
                     canvas.drawColor(Color.GREEN);
                 } else {
                     canvas.drawColor(Color.RED);

@@ -27,7 +27,7 @@ public class TipMap implements Serializable{
 
     public boolean contains_tip(long tip){
         for(long tap : taps){
-            if( tap > tip - 200 && tap < tip + 200 ){
+            if( tap > tip - 100 && tap < tip + 100 ){
                 return true;
             }
 
