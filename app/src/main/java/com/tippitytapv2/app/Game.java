@@ -24,6 +24,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.util.LinkedList;
+import java.util.Random;
 
 
 public class Game extends Activity
@@ -37,6 +38,7 @@ public class Game extends Activity
     private int score = 0;
     private int max_score;
     private Thread thread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,11 @@ public class Game extends Activity
         MediaMetadataRetriever meta = new MediaMetadataRetriever();
         meta.setDataSource(getApplicationContext(),Song);
         String song_name = meta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+        if(song_name == null){
+
+            Random random =  new Random();
+            song_name = String.valueOf(random.nextInt());
+        }
         song_name_view.setText(song_name);
         //Try to load TipMap, otherwise create one.
         try {
